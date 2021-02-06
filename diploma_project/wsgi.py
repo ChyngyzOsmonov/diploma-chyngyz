@@ -1,5 +1,5 @@
 """
-WSGI config for diploma_project project.
+WSGI config for diploma_projectz project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
