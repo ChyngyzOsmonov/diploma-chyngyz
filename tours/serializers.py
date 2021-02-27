@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Tour
+
+from .models import Tour, TourShot
 
 
 class TourSerializer(serializers.ModelSerializer):
@@ -8,7 +9,17 @@ class TourSerializer(serializers.ModelSerializer):
         model = Tour
 
 
-class TourDetailSerializer(serializers.ModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('id', 'title', 'price', 'desc', 'date', 'image', 'image2', 'image3', 'image4', 'payment', 'places')
+        fields = ("image",)
+        model = TourShot
+
+
+class TourDetailSerializer(serializers.ModelSerializer):
+    category = serializers.SlugRelatedField(slug_field="name", read_only=True)
+    shots = ImageSerializer(many=True)
+    payment = serializers.SlugRelatedField(slug_field="payment", read_only=True)
+
+    class Meta:
+        fields = ('id', 'title', 'category', 'price', 'desc', 'date', 'image', 'payment', 'places', 'shots')
         model = Tour

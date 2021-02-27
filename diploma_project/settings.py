@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'rest_framework',
     'tours',
 ]
@@ -124,3 +125,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 django_heroku.settings(locals())
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKEND': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+
+

@@ -1,12 +1,15 @@
 from rest_framework import generics
-from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Tour
 from .serializers import TourSerializer, TourDetailSerializer
+from .service import TourFilter
 
 
 class TourList(generics.ListAPIView):
     queryset = Tour.objects.all()
+    filter_backends = (DjangoFilterBackend, )
+    filterset_class = TourFilter
     serializer_class = TourSerializer
 
 
