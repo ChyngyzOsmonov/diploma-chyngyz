@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from .models import Tour, TourShot
+from .models import Tour, TourShot, Category
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('name',)
+        model = Category
 
 
 class TourSerializer(serializers.ModelSerializer):
